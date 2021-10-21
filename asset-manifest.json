@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Web-Semester-Project/static/css/main.248e6e49.chunk.css",
+    "main.js": "/Web-Semester-Project/static/js/main.e90ca2e3.chunk.js",
+    "main.js.map": "/Web-Semester-Project/static/js/main.e90ca2e3.chunk.js.map",
+    "runtime-main.js": "/Web-Semester-Project/static/js/runtime-main.c0fa89bb.js",
+    "runtime-main.js.map": "/Web-Semester-Project/static/js/runtime-main.c0fa89bb.js.map",
+    "static/js/2.2be88cc0.chunk.js": "/Web-Semester-Project/static/js/2.2be88cc0.chunk.js",
+    "static/js/2.2be88cc0.chunk.js.map": "/Web-Semester-Project/static/js/2.2be88cc0.chunk.js.map",
+    "static/js/3.15c27900.chunk.js": "/Web-Semester-Project/static/js/3.15c27900.chunk.js",
+    "static/js/3.15c27900.chunk.js.map": "/Web-Semester-Project/static/js/3.15c27900.chunk.js.map",
+    "index.html": "/Web-Semester-Project/index.html",
+    "static/css/main.248e6e49.chunk.css.map": "/Web-Semester-Project/static/css/main.248e6e49.chunk.css.map",
+    "static/js/2.2be88cc0.chunk.js.LICENSE.txt": "/Web-Semester-Project/static/js/2.2be88cc0.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/Web-Semester-Project/static/media/bg5.ac1c29af.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c0fa89bb.js",
+    "static/js/2.2be88cc0.chunk.js",
+    "static/css/main.248e6e49.chunk.css",
+    "static/js/main.e90ca2e3.chunk.js"
+  ]
+}
