@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>行政院人事行政總處- Directorate-General of Personnel Administration,Executive Yuan</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon.ico/">
+
+    <link rel="stylesheet" href="../../eserver/css/layout.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" media="print">
+    <link rel="stylesheet" href="../css/style.css" media="print">
+    <style type="text/css">
+        body {
+            background: none;
+            font-size: 1em !important;
+        }
+
+        .minister {
+            width: 100% !important;
+        }
+
+        @media (max-width: 1200px) {
+            img, .img-float {
+                width: auto !important;
+                height: auto !important;
+            }
+
+            .minister-img {
+                width: auto !important;
+                height: auto !important;
+            }
+        }
+
+        @media print {
+            a[href]:after {
+                display: none;
+            }
+            /*隱藏a的href*/
+            .book .div {
+                width: 100%;
+            }
+            .banner {
+            display:none;
+            }
+            .menu-tabs {
+                display: none;
+            }
+        }
+
+        /*---------------------列印按鈕--------------------------*/
+        .print_content {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 105px;
+            height: 35px;
+            background: url(../../images/print.png) no-repeat;
+            background-position: 0px 6px;
+            line-height: 220%;
+            color: #000;
+            text-indent: -9999px;
+        }
+
+            .print_content a {
+                display: block;
+                width: 100%;
+                height: 35px;
+                line-height: 220%;
+                color: #000;
+                text-decoration: none;
+                padding: 0px 0 0 40px;
+            }
+
+                .print_content a:hover {
+                    width: 65px;
+                    height: 35px;
+                    line-height: 220%;
+                    color: #000;
+                    text-decoration: none;
+                }
+
+        .PrintTop img {
+            text-align: left;
+        }
+
+        hr {
+            width: 100%;
+        }
+
+        /*隱藏多圖*/
+        .rig {
+            display: none;
+        }
+        /*隱藏分享*/
+    </style>
+
+
+    <script type="text/javascript">
+        $(function () {
+            if (opener != null) {
+                var scrUrl = opener.location.href; //主窗口
+                var content = "";
+                $(".content", opener.document).each(function (index, item) {
+                    //content += $(item).html();      //html()只能獲取子級內容，但此時需要可以獲取自身html
+                    // var con = $("<p>").append($(item).clone()).html();
+                    var con = item.outerHTML;
+                    content += con;
+                });
+            }
+
+            $("#lbcontent").html(content);
+            window.print();
+        });
+
+
+    </script>
+</head>
+<body style="background:#ffffff">
+    <div id="print_content" style="width:750px;; margin:0 auto;position: relative;">
+        <div class="print_content noprint">
+            <a href="javascript:void(0);" onclick="javascript: window.print();" onkeypress="javascript: window.print();">
+                列印
+            </a>
+        </div>
+        <!--**************************** 上  方  區  塊  *************************************-->
+        <div class="PrintTop">
+            <p><img alt="printlogo" src="../../images/logo.png"></p>
+        </div>
+
+        <!--**************************** 中  間  區  塊  *************************************-->
+        <div id="content_middle" style="background-image:none;">
+            <span id="lbcontent"></span>
+        </div>
+
+        <!--**************************** 下  方  區  塊  *************************************-->
+        <div id="content_bottom" style="text-align:left">
+            <hr>&nbsp;&nbsp;&nbsp;&nbsp;© 行政院人事行政總處- Directorate-General of Personnel Administration,Executive Yuan<br>
+        </div>
+    </div>
+    <h1 style="display: none;">行政院人事行政總處</h1>
+</body>
+</html>

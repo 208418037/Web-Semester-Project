@@ -1,0 +1,192 @@
+
+<!doctype html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>行政院人事行政總處- Directorate-General of Personnel Administration,Executive Yuan</title>
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+</head>
+
+<body>
+    <div id="send">
+        <div class="wrap">
+
+            <div class="send_wrap">
+                <h1>分享轉寄</h1>
+                <form enctype="multipart/form-data" id="send_form" defaultbutton="butSubmit" method="post" role="form" action="/forward">
+
+                    <noscript>
+                        <input type="hidden" name="nojs" value="1">
+                    </noscript>
+                    <dl>
+                        <dt><span>*</span><label for="PyName">朋友姓名：</label></dt>
+                        <dd>
+                            <input type="text" name="PyName" id="PyName" class="input_1 hidecon" maxlength="20" title="朋友姓名">
+                            <input type="hidden" name="infourl">
+                            <div id="PyNametxt">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><span>*</span><label for="Email">朋友Email：</label></dt>
+                        <dd>
+                            <input type="text" name="Email" id="Email" class="input_1 hidecon" maxlength="100" title="朋友Email">
+                            <div id="Emailtxt">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><span>*</span><label for="Name">您的姓名：</label></dt>
+                        <dd>
+                            <input type="text" name="Name" id="Name" class="input_1 hidecon" maxlength="20" title="您的姓名">
+                            <div id="Nametxt">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><span>*</span><label for="Content">留言內容：</label></dt>
+                        <dd>
+                            <textarea style="width: 60%; height: 70px;" id="Content" name="Content" class="hidecon" title="留言內容"></textarea>
+                            <div id="Contenttxt">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><span>*</span><label for="validcode">驗證碼：</label></dt>
+                        <dd>
+
+                            <td sk-data="GetValidcode()">
+                                <script type="text/javascript">
+                                    captchastr = "FYPH";
+                                </script>
+                                <input name="validcode" id="validcode" type="text" class="input-text" style="width: 70px;" maxlength="4" title="驗證碼">
+                                <img sk-src="/jpegimagernd?scode=FYPH&rnd=20211020000309" style="cursor: pointer; margin-bottom: -10px;" id="validimg" alt="驗證碼 FYPH" onclick="changecode();" onkeypress="changecode();">
+                                <a href="javascript:void(0);" id="playvalid" style="display: none;" onclick="playvalid(); return false;" onkeypress="playvalid(); return false;">播放</a>
+                                <a href="../../Codernd/scode%3DBA54FF2ADC454B56.html" target="_blank" id="noJsCodeA" title="播放">播放</a>
+                                <span id="soundcaptchaplayer" style="vertical-align: middle; padding-top: 10px;"></span>
+                                <noscript>
+                                    <br> 您的瀏覽器不支援JavaScript功能，請按Ctrl+F5獲取新驗證碼
+                                </noscript>
+                        </td></dd>
+                    </dl>
+
+                    <div id="submitDiv" class="btn">
+                        <input type="submit" id="butSubmit" class="but_style" value="送出">
+                        &nbsp;&nbsp;&nbsp;
+                        <input name="button" class="but_style" type="reset" value="重設">
+                    </div>
+                    <div id="loading" style="display: none;">
+                        資料送出中..
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- script -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script type="text/javascript" src="../../js/captcha/audio-player.js"></script>
+    <script type="text/javascript" src="../../js/captcha/player.js"></script>
+
+    <script type="text/javascript" src="../../js/formValidator/3.5/formValidator.js"></script>
+    <script type="text/javascript" src="../../js/formValidator/3.5/formValidatorRegex.js"></script>
+    <script type="text/javascript">
+        AudioPlayer.setup("/js/captcha/player.swf", {
+            width: "150px"
+        });
+        var captchastr = "";
+        $(function () {
+            $("#noJsCodeA").hide();
+            $("#playvalid").show();
+            $("#btnpreview").show();
+            changecode();
+            $.formValidator.initConfig({
+                formid: "send_form",
+                onerror: function (e) {
+                    alert(e);
+                },
+                onsuccess: function () {
+                    $("#loading").show();
+                    $("#submitDiv").hide();
+                    $.post("/forward", $('#send_form').serializeArray(), function (ret) {
+                        $("#loading").hide();
+                        $("#submitDiv").show();
+                        if (ret.error) {
+                            alert(ret.message);
+                            changecode();
+                        } else {
+                            alert('寄送成功');
+                            window.location.reload();
+                        }
+                    }, "json");
+                    return false;
+                }
+            });
+            $("#PyName").formValidator({
+                onshow: "",
+                onfocus: "",
+                oncorrect: ""
+            }).inputValidator({
+                min: 1,
+                onerror: "請輸入朋友姓名"
+            });
+            $("#Email").formValidator({
+                onshow: "",
+                onfocus: "",
+                oncorrect: ""
+            }).inputValidator({
+                min: 1,
+                onerror: "請輸入朋友Email"
+            }).regexValidator({
+                regexp: "email",
+                datatype: "enum",
+                onerror: "Email格式不正確"
+            });
+            $("#Name").formValidator({
+                onshow: "",
+                onfocus: "",
+                oncorrect: ""
+            }).inputValidator({
+                min: 1,
+                onerror: "請輸入您的姓名"
+            });
+            $("#Content").formValidator({
+                onshow: "",
+                onfocus: "",
+                oncorrect: ""
+            }).inputValidator({
+                min: 1,
+                onerror: "請輸入留言内容"
+            });
+            $("#validcode").formValidator({
+                onshow: "",
+                onfocus: "",
+                oncorrect: ""
+            }).inputValidator({
+                min: 1,
+                onerror: "請輸入驗證碼"
+            });
+        });
+
+        function playvalid() {
+            playAudio('/js/captcha/', captchastr);
+        }
+
+        function changecode() {
+            $.post('/changevalidcodernd', null, function (ret) {
+                captchastr = ret.message;
+                $('#validimg').attr('src', "/jpegimagernd?scode=" + ret.location + "&rnd=" + Math.random()).show();
+                $('#validimg').attr('alt', "請輸入驗證碼" + ret.location);
+            }, "json");
+        }
+    </script>
+</body>
+</html>
